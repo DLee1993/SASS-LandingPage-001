@@ -13,7 +13,7 @@ export const Navbar = () => {
     const toggleOpen = () => setOpen(!open);
 
     return (
-        <div>
+        <div className="overflow-hidden">
             <header className="w-full sticky top-0">
                 <div className="flex justify-center items-center gap-x-2 py-3 bg-black text-white text-sm">
                     <p className="text-white/60 hidden md:block">
