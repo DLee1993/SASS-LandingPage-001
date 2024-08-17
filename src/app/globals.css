@@ -12,7 +12,11 @@
     .cta-secondary {
         @apply bg-white text-black;
     }
-    .cta-tertiary{
-        @apply bg-transparent text-black
+    .cta-tertiary {
+        @apply bg-transparent text-black;
+    }
+
+    .logo-ticker-image {
+        @apply h-8 w-auto;
     }
 }
