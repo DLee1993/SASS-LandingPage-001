@@ -64,7 +64,7 @@ export const Navbar = () => {
                 }`}
                 id="mobile-nav"
             >
-                <ul className="w-full h-screen pl-5 flex flex-col justify-center gap-y-5 text-white">
+                <ul className="w-full h-screen pl-5 flex flex-col justify-center items-center gap-y-5 text-white text-2xl">
                     <li>
                         <Link
                             href="#"
