@@ -1,3 +1,5 @@
+"use client";
+
 import avatar1 from "@/assets/avatar-1.png";
 import avatar2 from "@/assets/avatar-2.png";
 import avatar3 from "@/assets/avatar-3.png";
@@ -9,7 +11,10 @@ import avatar8 from "@/assets/avatar-8.png";
 import avatar9 from "@/assets/avatar-9.png";
 import Image from "next/image";
 
-const testimonials = [
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+const testimonialsList1 = [
     {
         text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
         imageSrc: avatar1.src,
@@ -28,6 +33,9 @@ const testimonials = [
         name: "Morgan Lee",
         username: "@morganleewhiz",
     },
+];
+
+const testimonialsList2 = [
     {
         text: "I was amazed at how quickly we were able to integrate this app into our workflow.",
         imageSrc: avatar4.src,
@@ -46,6 +54,9 @@ const testimonials = [
         name: "Riley Smith",
         username: "@rileysmith1",
     },
+];
+
+const testimonialsList3 = [
     {
         text: "Adopting this app for our team has streamlined our project management and improved communication across the board.",
         imageSrc: avatar7.src,
@@ -67,6 +78,16 @@ const testimonials = [
 ];
 
 export const Testimonials = () => {
+    const testimonialRef = useRef(null);
+
+    const { scrollYProgress } = useScroll({
+        target: testimonialRef,
+        offset: ["start end", "end start"],
+    });
+
+    const translateYUp = useTransform(scrollYProgress, [0, 1], [150, -150]);
+    const translateYDown = useTransform(scrollYProgress, [0, 1], [-150, 150]);
+
     return (
         <section className="bg-white py-24">
             <div className="container">
@@ -82,12 +103,17 @@ export const Testimonials = () => {
                         tool for users around the world.
                     </p>
                 </section>
-                <section className="my-10 max-h-[748px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_90%,transparent)]">
-                    <ul className="columns-1 md:columns-2 lg:columns-3 space-y-7">
-                        {testimonials.map((element, index) => (
-                            <li
+                <section
+                    ref={testimonialRef}
+                    className="my-10 max-h-[748px] overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_15%,black_90%,transparent)]"
+                >
+                    <ul className="columns-1 md:columns-2 lg:columns-3 space-y-7 overflow-hidden">
+                        {testimonialsList1.map((element, index) => (
+                            <motion.li
                                 key={index}
                                 className="max-w-sm p-10 rounded-2xl shadow-xl border-black/5 cta-secondary"
+                                style={{ translateY: translateYUp }}
+                                transition={{ duration: 0.1 }}
                             >
                                 <article>{element.text}</article>
                                 <figure className="w-fit flex justify-center gap-x-2.5 mt-7">
@@ -103,7 +129,53 @@ export const Testimonials = () => {
                                         <p>{element.username}</p>
                                     </figcaption>
                                 </figure>
-                            </li>
+                            </motion.li>
+                        ))}
+                        {testimonialsList2.map((element, index) => (
+                            <motion.li
+                                key={index}
+                                className="hidden lg:block max-w-sm p-10 rounded-2xl shadow-xl border-black/5 cta-secondary"
+                                style={{ translateY: translateYDown }}
+                                transition={{ duration: 0.1 }}
+                            >
+                                <article>{element.text}</article>
+                                <figure className="w-fit flex justify-center gap-x-2.5 mt-7">
+                                    <Image
+                                        src={element.imageSrc}
+                                        alt={element.name}
+                                        width={50}
+                                        height={50}
+                                        className="h-auto"
+                                    />
+                                    <figcaption>
+                                        <p className="font-medium">{element.name}</p>
+                                        <p>{element.username}</p>
+                                    </figcaption>
+                                </figure>
+                            </motion.li>
+                        ))}
+                        {testimonialsList3.map((element, index) => (
+                            <motion.li
+                                key={index}
+                                className="max-w-sm p-10 rounded-2xl shadow-xl border-black/5 cta-secondary"
+                                style={{ translateY: translateYUp }}
+                                transition={{ duration: 0.1 }}
+                            >
+                                <article>{element.text}</article>
+                                <figure className="w-fit flex justify-center gap-x-2.5 mt-7">
+                                    <Image
+                                        src={element.imageSrc}
+                                        alt={element.name}
+                                        width={50}
+                                        height={50}
+                                        className="h-auto"
+                                    />
+                                    <figcaption>
+                                        <p className="font-medium">{element.name}</p>
+                                        <p>{element.username}</p>
+                                    </figcaption>
+                                </figure>
+                            </motion.li>
                         ))}
                     </ul>
                 </section>

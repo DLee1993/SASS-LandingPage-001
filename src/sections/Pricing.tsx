@@ -1,4 +1,8 @@
+"use client";
+
 import Check from "@/assets/check.svg";
+import { motion } from "framer-motion";
+
 const pricingTiers = [
     {
         title: "Free",
@@ -92,9 +96,18 @@ export const Pricing = () => {
                                     </h3>
                                     {popular && (
                                         <p className="text-sm inline-flex h-fit border-2 border-[#fff]/20 rounded-full py-1.5 px-4 tracking-tight">
-                                            <span className="bg-[linear-gradient(to_right,#dd7ddf,#e1cd86,#bbcb92,#71c2ef,#3bffff,#dd7ddf)] text-transparent bg-clip-text font-bold">
+                                            <motion.span
+                                                className="bg-[linear-gradient(to_right,#dd7ddf,#e1cd86,#bbcb92,#71c2ef,#3bffff,#dd7ddf,#e1cd86,#bbcb92,#71c2ef,#3bffff)] [background-size:200%] text-transparent bg-clip-text font-bold"
+                                                animate={{ backgroundPositionX: "-100%" }}
+                                                transition={{
+                                                    repeat: Infinity,
+                                                    duration: 2.5,
+                                                    ease: "linear",
+                                                    repeatType: "loop",
+                                                }}
+                                            >
                                                 Most popular
-                                            </span>
+                                            </motion.span>
                                         </p>
                                     )}
                                 </div>
